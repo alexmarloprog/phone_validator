@@ -4,13 +4,13 @@ namespace NexVortex\PhoneNumber\VerificationAPI;
 class TwillioPhoneVerificationAPI implements PhoneVerificationInterface
 {
   //TODO move to config file
-  private $api_key;
-  private $api_url;
-  private $country_code;
-  private $locale;
+  private $_api_key;
+  private $_api_url;
+  private $_country_code;
+  private $_locale;
 
-  private $start_endpoint = 'start';
-  private $check_endpoint = 'check';
+  private $_start_endpoint = 'start';
+  private $_check_endpoint = 'check';
   
   public function __construct(
     $api_key,
@@ -18,25 +18,25 @@ class TwillioPhoneVerificationAPI implements PhoneVerificationInterface
     $country_code = 1,
     $locale = "en")
   {
-    $this->api_key = $api_key;
-    $this->api_url = $api_url;
-    $this->country_code = $country_code;
-    $this->locale = $locale;
+    $this->_api_key = $api_key;
+    $this->_api_url = $api_url;
+    $this->_country_code = $country_code;
+    $this->_locale = $locale;
   }
 
   public function start( $phone_number, $type = "sms")
   {
     $params = [
-      "api_key" => $this->api_key,
+      "api_key" => $this->_api_key,
       "via" => $type,
       "phone_number" => $phone_number,
-      "country_code" => $this->country_code,
-      "locale" => $this->locale
+      "country_code" => $this->_country_code,
+      "locale" => $this->_locale
     ];
 
-    $response = \NexVortex\PhoneNumber\Utils\HTTPClient::post( $this->api_url."/".$this->start_endpoint , $params);
+    $response = \NexVortex\PhoneNumber\Utils\HTTPClient::post( $this->_api_url."/".$this->_start_endpoint , $params);
     $result = json_decode( $response, true);
-var_dump($response);
+
     if( $result and isset($result["success"]))
       return $result["success"];
     else
@@ -46,14 +46,14 @@ var_dump($response);
   public function check( $phone_number, $code)
   {
     $params = [
-      "api_key" => $this->api_key,
+      "api_key" => $this->_api_key,
       "phone_number" => $phone_number,
-      "country_code" => $this->country_code,
+      "country_code" => $this->_country_code,
       "verification_code" => $code
     ];
 
-    $response = \NexVortex\PhoneNumber\Utils\HTTPClient::get( $this->api_url."/".$this->check_endpoint, $params);
-var_dump($response);
+    $response = \NexVortex\PhoneNumber\Utils\HTTPClient::get( $this->_api_url."/".$this->_check_endpoint, $params);
+
     $result = json_decode( $response, true);
 
     if( $result and isset($result["success"]))
