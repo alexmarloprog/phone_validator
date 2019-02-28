@@ -14,14 +14,14 @@ class LibPhoneNumberFormatValidator implements PhoneFormatValidatorInterface
   {
     try
     {
-        $phone_number_proto = $this->_phone_utils->parse( $phone_number, $country);
-        $is_valid = $this->_phone_utils->isValidNumber( $phone_number_proto);
+      $phone_number_proto = $this->_phone_utils->parse( $phone_number, $country);
+      $is_valid = $this->_phone_utils->isValidNumber( $phone_number_proto);
 
-        return $is_valid;
+      return $is_valid;
     }
     catch ( \libphonenumber\NumberParseException $e)
     {
-        return false;
+      return false;
     }
   }
 }
