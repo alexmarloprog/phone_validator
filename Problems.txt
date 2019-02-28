@@ -1,0 +1,20 @@
+Coding Exercise:
+
+
+Objective
+To implement a reusable PHP class which will validate a given telephone number value against an external API service (e.g. Twilio) via the HTTP request protocol.
+ 
+
+Key Results
+·         A developer must be able to implement an instance of the class to validate whether a provided phone number is valid or invalid.
+·         The solution must be committed into a public Git repository system and shared with the nexVortex team members by 02/28 at 5p EST.
+ 
+
+Acceptance Criteria
+·         Solution utilizes PHP >= 5.6
+·         Demonstrates and applies knowledge of separate of concerns / single responsibility principle
+·         Demonstrates and applies knowledge of dependency injection
+·         Demonstrates and applies knowledge of coding standards
+·         Demonstrates and applies knowledge of unit or functional testing
+·         Demonstrates and applies knowledge of package management
+·         Demonstrates and applies knowledge of validation and/or error handling
